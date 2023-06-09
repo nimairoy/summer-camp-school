@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* animation  */
+.animated-slide-in-left{
+    animation: slideInLeft 0.5s;
+}
+
+@keyframes slideInLeft {
+    0%{
+        transform: translateX(-100%);
+        visibility: visible;
+    }
+    100%{
+        transform: translateX(0);
+    }
+}
+
+.animated-slide-in-right{
+    animation: slideInRight 0.5s;
+}
+
+@keyframes slideInRight {
+    0%{
+        transform: translateX(100%);
+        visibility: visible;
+    }
+    100%{
+        transform: translateX(0);
+    }
+}
