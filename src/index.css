@@ -5,7 +5,7 @@
 
 /* animation  */
 .animated-slide-in-left{
-    animation: slideInLeft 0.5s;
+    animation: slideInLeft 0.5s 0.2s;
 }
 
 @keyframes slideInLeft {
@@ -19,7 +19,7 @@
 }
 
 .animated-slide-in-right{
-    animation: slideInRight 0.5s;
+    animation: slideInRight 0.5s 0.3s;
 }
 
 @keyframes slideInRight {

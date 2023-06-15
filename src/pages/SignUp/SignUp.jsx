@@ -1,11 +1,42 @@
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
+import { useState } from 'react';
+import SocialLogin from '../../components/SocialLogin/SocialLogin';
+import { toast } from 'react-hot-toast';
 
 const SignUp = () => {
+    const {createUser, updateUserProfile} = useAuth();
+    const {register, handleSubmit,reset, formState: { errors }} = useForm();
+    const [error, setError] = useState('');
 
-    const {register, handleSubmit, formState: { errors }} = useForm();
+    const location = useLocation();
+    const navigate = useNavigate();
 
-    const onSubmit = data => console.log(data)
+    const from = location.state?.from?.pathname || '/';
+
+    const onSubmit = data => {
+        // console.log(data)
+        if(data.password !== data.confirm){
+            console.log('password not matched')
+            return setError('Password not matched');
+        }
+        createUser(data.email, data.password)
+        .then(result => {
+            const loggedUser = result.user;
+            console.log(loggedUser)
+            updateUserProfile(data.name, data.photo)
+            .then(() => {
+                toast.success('User Created Successfully');
+                setError('');
+                reset();
+                navigate(from, {replace: true})
+            })
+            
+        })
+        .catch(err => setError(err.message))
+
+    }
 
     return (
         <>
@@ -50,12 +81,22 @@ const SignUp = () => {
                                 {errors.password?.type === 'maxLength' && <p className='text-red-400'>Password must be less then 20 characters</p>}
                                 {errors.password?.type === 'pattern' && <p className='text-red-400'>Password must be includes an uppercase, a lowercase, a number and a special character</p>}
                             </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Confirm Password</span>
+                                </label>
+                                <input {...register("confirm", {
+                                    required: true,
+                                })} type="password" placeholder="Confirm Password" className="input input-bordered" />
+                                {errors.confirm?.type === 'required' && <p className='text-red-400'>Confirm Password is required</p>}
+                                {error && <p className='text-red-400'>Error: {error}</p>}
+                            </div>
                             <div className="form-control mt-6">
                                 <input type="submit" value="Sign Up" className="btn btn-warning" />
                             </div>
                         </form>
                         <p className='text-center pb-5'>Already have an account? <Link className='text-warning underline font-bold' to='/login'>Login</Link></p>
-                        {/* TODO add a social login icon  */}
+                        <SocialLogin></SocialLogin>
                     </div>
                 </div>
             </div>
