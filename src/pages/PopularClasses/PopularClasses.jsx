@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import ClassCard from "../../components/ClassCard/ClassCard";
+import PopularClassCard from "./PopularClassCard";
 
 const PopularClasses = () => {
     const [classes, setClasses] = useState([]);
@@ -10,7 +10,7 @@ const PopularClasses = () => {
         fetch('http://localhost:5000/classes')
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                // console.log(data)
                 setClasses(data);
             })
     }, [])
@@ -19,7 +19,7 @@ const PopularClasses = () => {
             <h2 className="text-4xl text-center mt-5 mb-5">Popular Classes</h2>
             <div className="grid md:grid-cols-3 gap-4">
                 {
-                    classes.map(clss => <ClassCard key={clss._id} clss={clss}></ClassCard>)
+                    classes.map(clss => <PopularClassCard key={clss._id} clss={clss}></PopularClassCard>)
                 }
             </div>
         </div>

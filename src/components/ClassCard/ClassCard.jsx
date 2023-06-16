@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 const ClassCard = ({ clss }) => {
     const { image, name, enrolled, price, seats, description, instructor_name, _id } = clss;
@@ -12,7 +13,7 @@ const ClassCard = ({ clss }) => {
                 <p>{description}</p>
                 <p className="flex justify-between w-full text-xl"><span> <strong>Instructor:</strong> {instructor_name}</span> <span>${price}</span></p>                
                 <div className="card-actions mt-4">
-                    <button className="btn btn-primary">view details</button>
+                    <Link to='/classes'><button className="btn btn-primary">See All Classes</button></Link>
                 </div>
             </div>
         </div>

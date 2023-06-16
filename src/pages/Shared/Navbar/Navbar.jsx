@@ -3,9 +3,11 @@ import logo from '../../../assets/logo.png'
 import useAuth from "../../../hooks/useAuth";
 import { Toaster, toast } from "react-hot-toast";
 import { FaShoppingCart } from "react-icons/fa";
+import useCart from "../../../hooks/useCart";
 
 const Navbar = () => {
     const { user, signout } = useAuth();
+    const [cart] = useCart();
 
     // handle log out
     const handleLogOut = () => {
@@ -23,10 +25,10 @@ const Navbar = () => {
         <li><Link className="text-[16px] font-semibold" to='/'>Home</Link></li>
         <li><Link className="text-[16px] font-semibold" to='/instructors'>Instructors</Link></li>
         <li><Link className="text-[16px] font-semibold" to='/classes'>Classes</Link></li>
-        <li><span className="text-[16px] font-semibold">
+        <li><Link to={'/dashboard/mycart'} className="text-[16px] font-semibold">
             <FaShoppingCart></FaShoppingCart>
-            <div className="badge badge-secondary">+99</div>
-       </span></li>
+            <div className="badge badge-secondary">{cart?.length || 0}</div>
+       </Link></li>
         <li><Link className="text-[16px] font-semibold" to='/secret'>Secret</Link></li>
         {user ?
             <>
