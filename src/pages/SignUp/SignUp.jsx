@@ -6,8 +6,8 @@ import SocialLogin from '../../components/SocialLogin/SocialLogin';
 import { toast } from 'react-hot-toast';
 
 const SignUp = () => {
-    const {createUser, updateUserProfile} = useAuth();
-    const {register, handleSubmit,reset, formState: { errors }} = useForm();
+    const { createUser, updateUserProfile } = useAuth();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [error, setError] = useState('');
 
     const location = useLocation();
@@ -17,24 +17,38 @@ const SignUp = () => {
 
     const onSubmit = data => {
         // console.log(data)
-        if(data.password !== data.confirm){
+        if (data.password !== data.confirm) {
             console.log('password not matched')
             return setError('Password not matched');
         }
         createUser(data.email, data.password)
-        .then(result => {
-            const loggedUser = result.user;
-            console.log(loggedUser)
-            updateUserProfile(data.name, data.photo)
-            .then(() => {
-                toast.success('User Created Successfully');
-                setError('');
-                reset();
-                navigate(from, {replace: true})
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser)
+                updateUserProfile(data.name, data.photo)
+                    .then(() => {
+                        const savedUser = {name: loggedUser.displayName, email: loggedUser.email};
+                        fetch('http://localhost:5000/users',{
+                            method: 'POST',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify(savedUser)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.insertedId) {
+                                    toast.success('User Created Successfully');
+                                    setError('');
+                                    reset();
+                                    navigate(from, { replace: true })
+                                }
+                            })
+
+                    })
+
             })
-            
-        })
-        .catch(err => setError(err.message))
+            .catch(err => setError(err.message))
 
     }
 

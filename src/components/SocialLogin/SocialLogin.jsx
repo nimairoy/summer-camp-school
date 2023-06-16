@@ -10,15 +10,31 @@ const SocialLogin = () => {
 
     const from = location.state?.from?.pathname || '/';
 
-    
+
     const handleSocialLogin = () => {
         signInWithGoogle()
-        .then(result => {
-            const loggedUser = result.user;
-            console.log(loggedUser)
-            toast.success('User Login successfully');
-            navigate(from, {replace: true})
-        })
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser)
+
+                const savedUser = { name: loggedUser.displayName, email: loggedUser.email };
+                fetch('http://localhost:5000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(savedUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.insertedId) {
+                            toast.success('User Login successfully');
+                            navigate(from, { replace: true })
+                        }
+                    })
+
+
+            })
     }
 
     return (

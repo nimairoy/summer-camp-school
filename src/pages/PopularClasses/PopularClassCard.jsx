@@ -25,7 +25,7 @@ const PopularClassCard = ({clss}) => {
             .then(data => {
                 if(data.insertedId){
                     refetch();
-                    toast.success('Data inserted Successfully');
+                    toast.success('Your Class Selected Successfully');
                 }
             })
         }
