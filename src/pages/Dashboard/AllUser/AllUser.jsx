@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import { AiFillDelete } from "react-icons/ai";
-import { FaUserShield } from "react-icons/fa";
 import Swal from "sweetalert2";
 
 const AllUser = () => {
@@ -8,6 +7,46 @@ const AllUser = () => {
         const res = await fetch('http://localhost:5000/users');
         return res.json();
     })
+
+
+    const handleMakeAdmin = user => {
+        fetch(`http://localhost:5000/users/admin/${user._id}`, {
+            method: 'PATCH'
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount) {
+                    refetch()
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: `${user.name} is Admin Now`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            })
+    }
+
+
+    const handleMakeInstructor = user => {
+        fetch(`http://localhost:5000/users/instructor/${user._id}`, {
+            method: 'PATCH'
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount) {
+                    refetch()
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: `${user.name} is Instructor Now`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            })
+    }
 
     const handleDelete = id => {
         fetch(`http://localhost:5000/users/admin/${id}`, {
@@ -30,15 +69,15 @@ const AllUser = () => {
 
     return (
         <div className="overflow-x-auto w-3/4">
-            <h2 className="text-3xl text-center mb-6">All Users Here</h2>
+            <h2 className="text-3xl text-center mb-8">All Users Here</h2>
             <table className="table w-full">
                 <thead>
                     <tr>
                         <th>#</th>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Instructor</th>
                         <th>Admin</th>
+                        <th>Instructor</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -50,8 +89,8 @@ const AllUser = () => {
                             <th>{index + 1}</th>
                             <td>{user.name}</td>
                             <td>{user.email}</td>
-                            <td>{user.role === 'admin' ? 'admin' : <button onClick={() => handleMakeAdmin(user._id)} className='px-4 font-semibold py-2 rounded bg-yellow-400 text-yellow-800'>Make Instructor</button>}</td>
-                            <td>{user.role === 'admin' ? 'admin' : <button onClick={() => handleMakeAdmin(user._id)} className='px-4 font-semibold py-2 rounded bg-yellow-400 text-yellow-800'>Make Admin</button>}</td>
+                            <td>{user.role === 'admin' ? 'Admin' : <button onClick={() => handleMakeAdmin(user)} className='px-4 font-semibold py-2 rounded bg-yellow-400 text-yellow-800'>Make Admin</button>}</td>
+                            <td>{user.role === 'instructor' ? 'Instructor' : <button onClick={() => handleMakeInstructor(user)} className='px-4 font-semibold py-2 rounded bg-yellow-400 text-yellow-800'>Make Instructor</button>}</td>
                             <td><AiFillDelete onClick={() => handleDelete(user._id)} className='text-4xl p-2 rounded bg-red-400 text-red-800 cursor-pointer'></AiFillDelete></td>
                         </tr>)
                     }
