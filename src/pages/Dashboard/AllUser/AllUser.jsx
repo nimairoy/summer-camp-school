@@ -89,8 +89,8 @@ const AllUser = () => {
                             <th>{index + 1}</th>
                             <td>{user.name}</td>
                             <td>{user.email}</td>
-                            <td>{user.role === 'admin' ? 'Admin' : <button onClick={() => handleMakeAdmin(user)} className='px-4 font-semibold py-2 rounded bg-yellow-400 text-yellow-800'>Make Admin</button>}</td>
-                            <td>{user.role === 'instructor' ? 'Instructor' : <button onClick={() => handleMakeInstructor(user)} className='px-4 font-semibold py-2 rounded bg-yellow-400 text-yellow-800'>Make Instructor</button>}</td>
+                            <td>{user.role === 'admin' ? <span className="text-md font-bold p-2 rounded bg-green-300">Admin</span> : <button onClick={() => handleMakeAdmin(user)} className='px-4 font-semibold py-2 rounded bg-yellow-400 text-yellow-800'>Make Admin</button>}</td>
+                            <td>{user.role === 'instructor' ? <span className="text-md font-bold p-2 rounded bg-green-300">Instructor</span> : <button onClick={() => handleMakeInstructor(user)} className='px-4 font-semibold py-2 rounded bg-yellow-400 text-yellow-800'>Make Instructor</button>}</td>
                             <td><AiFillDelete onClick={() => handleDelete(user._id)} className='text-4xl p-2 rounded bg-red-400 text-red-800 cursor-pointer'></AiFillDelete></td>
                         </tr>)
                     }
