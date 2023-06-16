@@ -9,6 +9,7 @@ import PopularInstructors from "../pages/PopularInstructors/PopularInstructors/P
 import PopularClasses from "../pages/PopularClasses/PopularClasses";
 import Dashboard from "../layouts/Dashboard";
 import MyCart from "../pages/Dashboard/MyCart/MyCart";
+import AllUser from "../pages/Dashboard/AllUser/AllUser";
 // import Payment from "../pages/Dashboard/Payment/Payment";
 
 const router = createBrowserRouter([
@@ -51,8 +52,8 @@ const router = createBrowserRouter([
           element: <MyCart></MyCart>
         },
         {
-          // path: 'payment/:id',
-          // element: <Payment></Payment>
+          path: 'allusers',
+          element: <AllUser></AllUser>
         }
       ]
     }
