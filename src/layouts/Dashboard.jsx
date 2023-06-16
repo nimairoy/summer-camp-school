@@ -1,13 +1,13 @@
 import { AiFillCalendar, AiFillHome, AiFillShop, AiOutlineBars, AiOutlineUsergroupAdd, AiOutlineWallet } from "react-icons/ai";
 import { FaBook, FaUtensils } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
-import useCart from "../hooks/useCart";
+import useAdmin from "../hooks/useAdmin";
+import useInstructor from "../hooks/useInstructor";
 
 const Dashboard = () => {
-    const [cart] = useCart();
 
-    const isAdmin = true;
-    const isInstructor = false;
+    const [isAdmin] = useAdmin();
+    const [isInstructor] = useInstructor();
 
     return (
         <div className="drawer lg:drawer-open">
