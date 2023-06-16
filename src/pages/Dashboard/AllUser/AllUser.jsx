@@ -70,14 +70,14 @@ const AllUser = () => {
     return (
         <div className="overflow-x-auto w-3/4">
             <h2 className="text-3xl text-center mb-8">All Users Here</h2>
-            <table className="table w-full">
+            <table className="table w-full text-[16px]">
                 <thead>
-                    <tr>
+                    <tr className="text-lg">
                         <th>#</th>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Admin</th>
-                        <th>Instructor</th>
+                        <th>Role</th>
+                        <th>Role</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -89,8 +89,8 @@ const AllUser = () => {
                             <th>{index + 1}</th>
                             <td>{user.name}</td>
                             <td>{user.email}</td>
-                            <td>{user.role === 'admin' ? <span className="text-md font-bold p-2 rounded bg-green-300">Admin</span> : <button onClick={() => handleMakeAdmin(user)} className='px-4 font-semibold py-2 rounded bg-yellow-400 text-yellow-800'>Make Admin</button>}</td>
-                            <td>{user.role === 'instructor' ? <span className="text-md font-bold p-2 rounded bg-green-300">Instructor</span> : <button onClick={() => handleMakeInstructor(user)} className='px-4 font-semibold py-2 rounded bg-yellow-400 text-yellow-800'>Make Instructor</button>}</td>
+                            <td>{user.role === 'admin' ? <span className={`text-md font-bold p-2 rounded bg-green-300 ${user.role==="instructor" ? 'disabled': ''}`}>Admin</span> : <button onClick={() => handleMakeAdmin(user)} className='px-4 font-semibold py-2 rounded bg-yellow-400 text-yellow-800'>Make Admin</button>}</td>
+                            <td>{user.role === 'instructor' ? <span className={`text-md font-bold p-2 rounded bg-green-300 ${user.role==="instructor" ? 'disabled': ''}`}>Instructor</span> : <button onClick={() => handleMakeInstructor(user)} className='px-4 font-semibold py-2 rounded bg-yellow-400 text-yellow-800'>Make Instructor</button>}</td>
                             <td><AiFillDelete onClick={() => handleDelete(user._id)} className='text-4xl p-2 rounded bg-red-400 text-red-800 cursor-pointer'></AiFillDelete></td>
                         </tr>)
                     }
