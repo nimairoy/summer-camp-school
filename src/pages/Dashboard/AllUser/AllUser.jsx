@@ -70,7 +70,7 @@ const AllUser = () => {
     return (
         <div className="overflow-x-auto w-3/4">
             <h2 className="text-3xl text-center mb-8">All Users Here</h2>
-            <table className="table w-full text-[16px]">
+            <table className="table w-full text-[14px]">
                 <thead>
                     <tr className="text-lg">
                         <th>#</th>
