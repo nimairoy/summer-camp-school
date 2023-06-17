@@ -4,7 +4,6 @@ import Home from "../pages/Home/Home/Home";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 import PrivateRoutes from "./PrivateRoutes";
-import Secret from "../pages/Secret/Secret";
 import PopularInstructors from "../pages/PopularInstructors/PopularInstructors/PopularInstructors";
 import PopularClasses from "../pages/PopularClasses/PopularClasses";
 import Dashboard from "../layouts/Dashboard";
@@ -12,6 +11,9 @@ import MyCart from "../pages/Dashboard/MyCart/MyCart";
 import AllUser from "../pages/Dashboard/AllUser/AllUser";
 import AddClass from "../pages/Dashboard/AddClass/AddClass";
 import MyClass from "../pages/Dashboard/MyClass/MyClass";
+import ManageClasses from "../pages/Dashboard/ManageClasses/ManageClasses";
+import AdminRoutes from "./AdminRoutes";
+import Payment from "../pages/Dashboard/Payment/Payment";
 // import Payment from "../pages/Dashboard/Payment/Payment";
 
 const router = createBrowserRouter([
@@ -32,10 +34,6 @@ const router = createBrowserRouter([
           element: <SignUp></SignUp>
         },
         {
-          path: '/secret',
-          element: <PrivateRoutes><Secret></Secret></PrivateRoutes>
-        },
-        {
           path: '/instructors',
           element: <PopularInstructors></PopularInstructors>
         },
@@ -54,8 +52,17 @@ const router = createBrowserRouter([
           element: <MyCart></MyCart>
         },
         {
+          path: 'payment/:id',
+          element: <Payment></Payment>
+        },
+        //admin route
+        {
           path: 'allusers',
-          element: <AllUser></AllUser>
+          element: <AdminRoutes><AllUser></AllUser></AdminRoutes>
+        },
+        {
+          path: 'manageclasses',
+          element: <AdminRoutes><ManageClasses></ManageClasses></AdminRoutes>
         },
         {
           path: 'addclass',

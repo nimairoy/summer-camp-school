@@ -29,7 +29,6 @@ const Navbar = () => {
             <FaShoppingCart></FaShoppingCart>
             <div className="badge badge-secondary">{cart?.length || 0}</div>
        </Link></li>
-        <li><Link className="text-[16px] font-semibold" to='/secret'>Secret</Link></li>
         {user ?
             <>
                 <li><img className="w-16" src={user?.photoURL} alt="" /></li>

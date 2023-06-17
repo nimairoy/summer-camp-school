@@ -23,3 +23,19 @@
 // };
 
 // export default Payment;
+
+
+
+
+const Payment = () => {
+
+
+
+    return (
+        <div>
+            <h2 className="text-3xl">This is payament page</h2>
+        </div>
+    );
+};
+
+export default Payment;
