@@ -13,6 +13,7 @@ import AddClass from "../pages/Dashboard/AddClass/AddClass";
 import MyClass from "../pages/Dashboard/MyClass/MyClass";
 import ManageClasses from "../pages/Dashboard/ManageClasses/ManageClasses";
 import AdminRoutes from "./AdminRoutes";
+import Checkout from "../pages/Dashboard/Payment/Checkout";
 import Payment from "../pages/Dashboard/Payment/Payment";
 // import Payment from "../pages/Dashboard/Payment/Payment";
 
@@ -53,7 +54,12 @@ const router = createBrowserRouter([
         },
         {
           path: 'payment/:id',
-          element: <Payment></Payment>
+          element: <Payment></Payment>,
+          loader: ({params}) => fetch(`https://yoga-camp-server.vercel.app/carts/${params.id}`)
+        },
+        {
+          path: 'checkout',
+          element: <Checkout></Checkout>
         },
         //admin route
         {

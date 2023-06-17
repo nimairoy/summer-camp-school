@@ -14,7 +14,7 @@ const PopularClassCard = ({clss}) => {
     const handleSelectClass = () => {
         if(user && user?.email){
             const orderItem = {cartItemID: _id, image, name, enrolled, price,  description, instructor_name, email:user.email}
-            fetch('http://localhost:5000/carts',{
+            fetch('https://yoga-camp-server.vercel.app/carts',{
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'

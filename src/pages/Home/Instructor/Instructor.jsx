@@ -5,7 +5,7 @@ const Instructor = () => {
     const [instructors, setInstructors] = useState([]);
     instructors.sort((a, b)=> b.students - a.students);
     useEffect(()=>{
-        fetch('http://localhost:5000/instructors')
+        fetch('https://yoga-camp-server.vercel.app/instructors')
         .then(res => res.json())
         .then(data => setInstructors(data));
     }, [])

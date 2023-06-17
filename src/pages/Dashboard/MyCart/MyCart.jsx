@@ -20,7 +20,7 @@ const MyCart = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/carts/${item._id}`, {
+                fetch(`https://yoga-camp-server.vercel.app/carts/${item._id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
@@ -67,7 +67,7 @@ const MyCart = () => {
                                 <td><img className='w-20' src={item.image} alt="" /></td>
                                 <td>{item.name}</td>
                                 <td className='text-end'> ${item.price}</td>
-                                <td > <Link to={`/dashboard/payment/${item._id}`}><button className='btn btn-sm bg-yellow-500 border-0'>Pay</button></Link></td>
+                                <td > <Link to={`/dashboard/payment/${item._id}`}><button className='btn btn-sm bg-yellow-500 border-0'>Details</button></Link></td>
                                 <td><AiFillDelete onClick={() => handleDelete(item)} className='text-4xl p-2 rounded bg-red-400 text-red-800 cursor-pointer'></AiFillDelete></td>
                             </tr>)
                         }
