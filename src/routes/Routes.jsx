@@ -10,6 +10,7 @@ import PopularClasses from "../pages/PopularClasses/PopularClasses";
 import Dashboard from "../layouts/Dashboard";
 import MyCart from "../pages/Dashboard/MyCart/MyCart";
 import AllUser from "../pages/Dashboard/AllUser/AllUser";
+import AddClass from "../pages/Dashboard/AddClass/AddClass";
 // import Payment from "../pages/Dashboard/Payment/Payment";
 
 const router = createBrowserRouter([
@@ -45,7 +46,7 @@ const router = createBrowserRouter([
     },
     {
       path: 'dashboard',
-      element: <Dashboard></Dashboard>,
+      element: <PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>,
       children: [
         {
           path: 'mycart',
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
         {
           path: 'allusers',
           element: <AllUser></AllUser>
+        },
+        {
+          path: 'addclass',
+          element: <AddClass></AddClass>
         }
       ]
     }
