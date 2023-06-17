@@ -33,7 +33,7 @@ const Dashboard = () => {
                                 <>
                                     <li><NavLink to='/dashboard/instructorhome'><AiFillHome></AiFillHome> Instructor Home</NavLink></li>
                                     <li><NavLink to='/dashboard/addclass'><AiFillSchedule></AiFillSchedule> Add a Class</NavLink></li>
-                                    <li><NavLink to='/dashboard/myclass'><AiOutlineBars></AiOutlineBars> My Classes</NavLink></li>                                                                      
+                                    <li><NavLink to='/dashboard/myclasses'><AiOutlineBars></AiOutlineBars> My Classes</NavLink></li>                                                                      
                                 </>
                                 :
                                 <>

@@ -4,7 +4,7 @@ import PopularClassCard from "./PopularClassCard";
 const PopularClasses = () => {
     const [classes, setClasses] = useState([]);
 
-    classes.sort((a, b)=> b.enrolled - a.enrolled);
+    classes.sort((a, b)=> b?.enrolled - a?.enrolled);
 
     useEffect(() => {
         fetch('http://localhost:5000/classes')

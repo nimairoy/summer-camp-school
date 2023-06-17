@@ -25,8 +25,8 @@ const AddClass = () => {
             .then(imageResponse => {
                 if (imageResponse.success) {
                     const imgURL = imageResponse.data.display_url;
-                    const { name, price, seats, image, instructor_name, email, description } = data;
-                    const newItem = { name, price: parseFloat(price), seats: parseInt(seats), status: 'pending', image, instructor_name, email, description }
+                    const { name, price, seats, image, instructor_name, email, description, enrolled } = data;
+                    const newItem = { name, price: parseFloat(price), seats: parseInt(seats), enrolled:parseInt(enrolled), status: 'pending', image, instructor_name, email, description }
                     newItem.image = imgURL
                     console.log(newItem)
                     axiosSecure.post('/classes', newItem)
@@ -64,17 +64,22 @@ const AddClass = () => {
                             <label className="label">
                                 <span className="label-text font-semibold">Instructor Name</span>
                             </label>
-                            <input {...register("instructor_name", { required: true })} readOnly defaultValue={user?.displayName} className='py-3 px-2 w-full max-w-xs' />
-                           
-
+                            <input {...register("instructor_name", { required: true })} readOnly defaultValue={user?.displayName} className='py-3 px-2 w-full max-w-xs' />                           
                         </div>
 
                         <div className="form-control w-full ">
                             <label className="label ml-5">
                                 <span className="label-text font-semibold">Instructor Email</span>
                             </label>
-                            <input type="email" {...register("email", { required: true })} readOnly defaultValue={user?.email} placeholder="Email" className="input ml-auto rounded-none w-full max-w-xs" />
-                           
+                            <input type="email" {...register("email", { required: true })} readOnly defaultValue={user?.email} placeholder="Email" className="input ml-auto rounded-none w-full max-w-xs" />                       
+                        </div>
+
+                        <div className="form-control w-full ">
+                            <label className="label ml-5">
+                                <span className="label-text font-semibold">Students</span>
+                            </label>
+                            <input type="text" {...register("enrolled", { required: true })} placeholder="Students Number" className="input ml-auto rounded-none w-full max-w-xs" />
+                            {errors.enrolled?.type === 'required' && <p className='text-red-400' role="alert">Students is required</p>}
                         </div>
 
                         <div className="form-control w-full ">
